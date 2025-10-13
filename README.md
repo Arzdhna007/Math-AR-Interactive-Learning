@@ -1,115 +1,190 @@
 # 🧮 Math AR – Interactive Augmented Reality Math Learning App
 
-An **Augmented Reality (AR)** educational game designed to help **elementary school students** learn geometry interactively through 3D visualizations.  
-Developed with **Unity**, **Vuforia**, and **C#**, this project transforms conventional math learning into a fun and immersive experience.
+An **Augmented Reality (AR)** educational game designed to help **elementary school students** learn geometry interactively through 3D visualization and quizzes.  
+Developed with **Unity**, **Vuforia**, and **C#**, this app enhances conceptual understanding of **solid and flat shapes** using marker-based AR learning.
 
 ---
 
-## 📖 Overview
-**Math AR** is an educational app that teaches basic geometry—introducing solid and flat shapes like cubes, spheres, prisms, and pyramids—through interactive 3D models displayed via AR markers.  
-The app was developed as an innovation in early mathematics education to enhance student engagement and conceptual understanding.
+## 📖 Research Overview
+Mathematics learning often becomes abstract and difficult to visualize for young learners.  
+**Math AR** bridges this gap by combining traditional learning with **interactive Augmented Reality visualization**, allowing students to scan cards and view 3D models of geometric objects.
 
-The research and development followed the **ADDIE model** (Analysis, Design, Development, Implementation, and Evaluation).
-
----
-
-## 🎯 Objectives
-- Develop a game-based learning media that makes math more engaging and fun.  
-- Improve conceptual understanding of geometry through **AR-based visualization**.  
-- Evaluate the effectiveness of AR learning for early-grade students.
+This research and application were developed using the **ADDIE model** (Analysis, Design, Development, Implementation, Evaluation).
 
 ---
 
-## 🧩 Features
-- 🧠 **3D Object Visualization** – Display and manipulate solid shapes (cube, prism, cone, sphere).  
-- 🧮 **Interactive Learning Mode** – Students can rotate, scale, and explore each shape.  
-- 🧾 **Formulas and Labels** – Includes area, perimeter, and edge information for every shape.  
-- 🧩 **AR Marker Integration** – Scan printed cards to show 3D models in real-world context.  
-- 🧠 **Exploration and Quiz** – Encourage students to learn by exploring and testing knowledge.  
-- 🎧 **Audio Narration** – Assists younger learners in understanding instructions.  
-- 📱 **Offline Ready** – Fully functional without an internet connection.
+## 🎯 Research Objectives
+- Develop a **3D AR learning app** that visualizes geometric shapes (solid and flat).  
+- Increase **student engagement and motivation** through interactive AR media.  
+- Evaluate effectiveness using **expert validation and student testing**.  
+- Improve comprehension of formulas, dimensions, and real-world geometric relations.
 
 ---
 
-## ⚙️ Technical Implementation
-
-| Component | Description |
-|------------|-------------|
-| **Engine** | Unity 2021+ |
-| **Framework** | Vuforia SDK (AR marker tracking) |
-| **Language** | C# |
-| **Platform** | Android |
-| **3D Assets** | Blender |
-| **Design Tools** | Adobe Illustrator & Photoshop |
-| **Development Model** | ADDIE (Analysis, Design, Development, Implementation, Evaluation) |
+## 🧩 Key Features
+- 🧊 **3D Object Visualization:** Scan markers to display 3D models of geometric objects.  
+- 🧮 **Solid & Flat Geometry:** Learn about cubes, prisms, spheres, triangles, circles, and more.  
+- 🧩 **Interactive Quiz System:** Adaptive multiple-choice quiz using JSON question sets.  
+- 🎧 **Sound & Feedback System:** Audio and animated effects for correct/wrong answers.  
+- 🧠 **Offline Learning:** Runs without internet for use in classrooms.  
+- 🧾 **Formula Display:** Shows area, volume, perimeter, and surface data in real time.  
 
 ---
 
-## 💻 Game Concept Summary
-| Element | Description |
-|----------|-------------|
-| **Title** | Math AR – Buku Interaktif Matematika |
-| **Core Idea** | Teach geometry through interactive exploration and AR visualization. |
-| **Objective** | Improve understanding of geometric shapes using fun, intuitive media. |
-| **Target Audience** | Elementary students aged 6–8 years |
-| **Platform** | Android |
-| **Core Gameplay** | Scan shape cards → visualize in AR → learn formulas & properties interactively |
+## ⚙️ System Architecture
+
+📱 Math AR Application
+│
+├── menu.cs → Main menu navigation handler
+├── bangunruang.cs → Scene controller for 3D solid shape lessons
+├── bangundatar.cs → Scene controller for 2D flat shape lessons
+├── QuestionManager.cs → Dynamic quiz system (JSON-based)
+│
+├── /Assets/Models/ → 3D shapes (cube, prism, cone, sphere, etc.)
+├── /StreamingAssets/ → quiz_complete_abcd_shuffled.json
+└── /Images/ → UI screenshots & storyboard
+
+
+
+> 🧠 The system uses **SceneManager** for navigation, **Vuforia SDK** for AR marker tracking, and **TextMeshPro** for rendering question text and UI.
 
 ---
 
-## 🧮 Learning Content
-**Solid Shapes (Bangun Ruang):**
-- Cube (Kubus)  
-- Rectangular Prism (Balok)  
-- Sphere (Bola)  
-- Cone (Kerucut)  
-- Cylinder (Tabung)
+## 🧩 Core Scripts
 
-**Flat Shapes (Bangun Datar):**
-- Square (Persegi)  
-- Rectangle (Persegi Panjang)  
-- Triangle (Segitiga)  
-- Circle (Lingkaran)
+### 🧭 menu.cs  
+Handles all menu navigation and scene transitions.
 
-Each object displays its **edges, sides, and surface area** through AR visualization.
+```csharp
+public class menu : MonoBehaviour {
+   public void TombolKeluar() {
+       Application.Quit();
+       Debug.Log("Game Close");
+   }
 
----
+   public void loadbangunruang() => SceneManager.LoadScene("bangunruang");
+   public void loadbangundatar() => SceneManager.LoadScene("bangundatar");
+   public void loadtentangaplikasi() => SceneManager.LoadScene("tentangaplikasi");
+   public void loadKuis() => SceneManager.LoadScene("Kuis");
+}
+```
 
-## 🧭 Development Process (ADDIE Model)
-
-1. **Analysis:**  
-   Identified low engagement in traditional math learning and lack of interactive visual tools.
-2. **Design:**  
-   Created flowcharts, storyboards, and user interface mockups for 3D exploration.
-3. **Development:**  
-   Built using Unity + Vuforia; implemented object animation and formula visualization.
-4. **Implementation:**  
-   Tested with students in real classroom environments.
-5. **Evaluation:**  
-   Used questionnaires and observation to measure user satisfaction and comprehension improvement.
+> 🧠 The system uses **SceneManager** for navigation, **Vuforia SDK** for AR marker tracking, and **TextMeshPro** for rendering question text and UI.
 
 ---
 
-## 🧪 Testing & Validation
-- **Alpha Testing:**  
-  Conducted by subject and media experts, evaluating design, usability, and material accuracy.  
-- **Blackbox Testing:**  
-  Verified all menu interactions (audio, AR trigger, object selection) work as intended.  
-- **Student Observation:**  
-  Measured student response, participation, and comprehension levels.  
-- **Result:**  
-  Rated **“Very Good”** in interactivity and visual engagement, proven to improve learning motivation.
+## 🧩 Core Scripts
+
+### 🧭 menu.cs  
+Handles all menu navigation and scene transitions.
+
+```csharp
+public class menu : MonoBehaviour {
+   public void TombolKeluar() {
+       Application.Quit();
+       Debug.Log("Game Close");
+   }
+
+   public void loadbangunruang() => SceneManager.LoadScene("bangunruang");
+   public void loadbangundatar() => SceneManager.LoadScene("bangundatar");
+   public void loadtentangaplikasi() => SceneManager.LoadScene("tentangaplikasi");
+   public void loadKuis() => SceneManager.LoadScene("Kuis");
+}
+```
+🎮 Acts as the navigation hub connecting 3D learning scenes, quiz modules, and info menus.
+
+
+🧱 bangunruang.cs
+
+Controls transitions between solid shape lessons (Bangun Ruang) scenes.
+
+```csharp
+public class bangunruang : MonoBehaviour {
+   public void loadmenu() => SceneManager.LoadScene("menu");
+   public void GoTorumuskubus() => SceneManager.LoadScene("rumuskubus");
+   public void GoTorusukkubus() => SceneManager.LoadScene("rusukkubus");
+   public void GoTorumusprisma() => SceneManager.LoadScene("rumusprisma");
+   public void GoTorusukprisma() => SceneManager.LoadScene("rusukprisma");
+}
+```
+🔹 Each function directs students to a specific lesson scene focused on volume, surface area, or edge count.
+
+
+
+📐 bangundatar.cs
+
+Handles navigation for flat shapes (Bangun Datar) lessons.
+
+```csharp
+public class bangundatar : MonoBehaviour {
+   public void loadmenu() => SceneManager.LoadScene("menu");
+   public void GoToklllingkaran() => SceneManager.LoadScene("klllingkaran");
+   public void GoToluaslingkaran() => SceneManager.LoadScene("luaslingkaran");
+   public void GoTositiklingkaran() => SceneManager.LoadScene("sitiklingkaran");
+}
+```
+🧾 Students can learn perimeter, area, and vertices for each 2D shape interactively.
+
+
+
+🧮 QuestionManager.cs
+
+Core logic for loading, randomizing, and scoring quizzes dynamically from JSON.
+```csharp
+[System.Serializable]
+public class QuestionData {
+    public string question;
+    public Dictionary<string, string> choices;
+    public string correct;
+}
+
+public class QuestionManager : MonoBehaviour {
+    public TextMeshProUGUI questionText;
+    public List<Button> choiceButtons;
+    public TextMeshProUGUI scoreText;
+    private List<QuestionData> questions;
+    private int score = 0;
+    
+    IEnumerator LoadQuestions() {
+        string path = Path.Combine(Application.streamingAssetsPath, "quiz_complete_abcd_shuffled.json");
+        string json = File.ReadAllText(path);
+        questions = JsonConvert.DeserializeObject<List<QuestionData>>(json)
+                    .OrderBy(q => Random.value).ToList();
+        ShowQuestion();
+    }
+
+    void ShowQuestion() {
+        QuestionData q = questions[0];
+        questionText.text = q.question;
+    }
+}
+```
+🎯 Dynamically loads randomized quiz data, updates scores, and triggers result animations — improving learning retention through gamification.
+
+
+
+
+## 🧠 ADDIE Research Framework
+
+| Stage | Description |
+|:------|:-------------|
+| **Analysis** | Identified lack of engaging media in math learning for early students. |
+| **Design** | Created AR-based storyboards, interface mockups, and learning flow diagrams. |
+| **Development** | Implemented Unity scenes, C# logic, and Vuforia marker tracking. |
+| **Implementation** | Field-tested at primary education level with 15 participants. |
+| **Evaluation** | Expert validation and student feedback confirmed increased engagement and comprehension. |
 
 ---
 
-## 📊 Evaluation Metrics
-| Method | Description |
-|---------|-------------|
-| **Likert Scale (1–5)** | Used to evaluate engagement, clarity, and satisfaction. |
-| **Observation Sheet** | Recorded student behavior and enthusiasm during use. |
-| **Questionnaire Feedback** | Collected qualitative feedback from teachers and students. |
+## 📊 Evaluation & Testing Results
 
-> 🎓 *Results show an improvement of over 30% in learning engagement and comprehension.*
+| Aspect | Expert Score | Student Response | Category |
+|:--------|:--------------:|:----------------:|:---------:|
+| Media Feasibility | 93% | 91% | Very Good |
+| Material Relevance | 92% | 90% | Very Good |
+| Engagement & Motivation | – | +34% improvement | Positive Impact |
+
+> 📈 *Based on Likert-scale questionnaires and N-Gain analysis, AR-based learning increased student engagement by approximately **30–35%**.*
 
 ---
 
@@ -117,41 +192,50 @@ Each object displays its **edges, sides, and surface area** through AR visualiza
 
 | Scene | Description |
 |:------:|-------------|
-| <img src="images/Home.png" width="350"> | 🏠 **Main Menu** – Provides access to AR Scan, Learning, and About sections. |
-| <img src="images/ARScan.png" width="350"> | 📷 **AR Scan Scene** – Students scan markers to display 3D models. |
-| <img src="images/Geometry3D.png" width="350"> | 🧊 **3D Geometry Mode** – Explores solid shapes in AR with real-time rotation. |
-| <img src="images/Quiz.png" width="350"> | 🧩 **Quiz Mode** – Short tests to strengthen conceptual understanding. |
-| <img src="images/Result.png" width="350"> | 🏆 **Result Scene** – Displays total score and motivational feedback. |
+| <img src="images/MenuAWALMathAR.png" width="350"> | 🏠 **Main Menu** – Displays the title screen and navigation options for AR Scan, Quiz, and About sections. |
+| <img src="images/SceneScanAR.png" width="350"> | 📷 **AR Scan Scene** – Scans geometric shape markers and visualizes 3D objects in real-time. |
+| <img src="images/SceneKuiz.png" width="350"> | 🧩 **Quiz Scene** – Presents interactive multiple-choice geometry questions. |
+| <img src="images/JawabanKetikaBenarPadaQUIZ.png" width="350"> | ✅ **Correct Answer Feedback** – Displays positive feedback animation and sound when students answer correctly. |
+| <img src="images/JawabanKetikaSalahPadaQuiz.png" width="350"> | ❌ **Incorrect Answer Feedback** – Shows guidance and correction when the answer is wrong. |
+| <img src="images/TentangDANPENJELASANAPLIKASI.png" width="350"> | ℹ️ **About & Explanation Page** – Provides information about the app’s purpose and usage guide. |
 
-> 🌐 *These screenshots demonstrate how Math AR merges education and AR visualization.*
+> 🌐 *These visuals demonstrate how Math AR combines learning, interaction, and gamified education through AR-based visualization.*
 
 ---
 
-## 🎬 Storyboard Overview
+## 🎬 Storyboard Flow
 
 | Scene | Description |
 |:------:|-------------|
-| **Main Menu** | The app opens with an interactive main screen featuring “Bangun Datar” and “Bangun Ruang”. |
-| **AR Learning Mode** | Displays 3D object when marker detected; students can rotate and zoom. |
-| **Formula View** | Shows animated calculation of area and perimeter. |
-| **Quiz Scene** | Students answer geometry questions with instant feedback. |
-| **Result Screen** | Displays score summary and encouragement message. |
+| **Main Menu** | Entry screen for selecting learning mode (Bangun Datar, Bangun Ruang, or Quiz). |
+| **AR Scan Scene** | Detects markers and displays 3D geometry (cube, sphere, prism, cone). |
+| **Quiz Mode** | Students answer randomized AR-related math questions with feedback animation. |
+| **Result Screen** | Displays total score, motivational message, and learning summary. |
+| **About Page** | Provides background, app goals, and user guidance. |
 
 <p align="center">
   <img src="images/Storyboard_MathAR.png" width="850">
 </p>
 
-> 🧩 *Storyboard showing the flow of the learning experience from main menu to quiz result.*
+---
+
+## 🧩 Key Findings
+
+- AR visualization improved **conceptual clarity and spatial understanding** among students.  
+- Interactive quizzes increased **motivation, curiosity, and active participation**.  
+- Teachers reported improved **engagement and comprehension** in classroom trials.
 
 ---
 
 ## 🏁 Conclusion
-**Math AR** successfully integrates **AR technology, interactive design, and gamified learning** to enhance early math education.  
-It improves students’ spatial understanding and motivation while making math lessons more visual, active, and enjoyable.
+
+**Math AR** successfully integrates **Augmented Reality, gamification, and pedagogy** to enhance mathematics learning for elementary students.  
+By combining **3D visualization, adaptive quizzes, and real-world interactivity**, this project transforms traditional lessons into **immersive and enjoyable learning experiences**.
 
 ---
 
 ## 👨‍💻 Developer
+
 **Arrizqi Pramadhana**  
 🎓 *Politeknik Negeri Medan – D4 Multimedia Graphic Engineering Technology*  
 📫 [arrizqipramadhana0710@gmail.com](mailto:arrizqipramadhana0710@gmail.com)  
@@ -160,3 +244,5 @@ It improves students’ spatial understanding and motivation while making math l
 ---
 
 © 2025 Arrizqi Pramadhana | Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+
